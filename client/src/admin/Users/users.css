@@ -1,0 +1,28 @@
+body {
+  background-color: #000000cf;
+}
+
+.users {
+  width: 105%;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin: 20px auto;
+  min-height: 57vh;
+  border: solid gray 1px;
+  background-color: #000000cf;
+  color: white;
+  padding-left: 117px;
+}
+
+td {
+  text-align: justify;
+  padding: 10px;
+}
+
+h1 {
+  text-align: center;
+  display: block;
+  margin: auto;
+  color: blue;;
+  margin-left: -80px;
+}
