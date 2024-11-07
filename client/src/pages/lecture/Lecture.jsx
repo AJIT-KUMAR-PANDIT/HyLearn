@@ -181,16 +181,20 @@ const Lecture = ({ user }) => {
             />{" "}
             {completed} %
           </div>
-          <div className="flex justify-between min-h-[80vh]">
-            <div className="w-7/12 p-4">
+          <div className="flex flex-col md:flex-row justify-between min-h-[80vh] space-y-4 md:space-y-0 md:space-x-4">
+            <div className=" md:w-7/12 w-full p-4 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
               {lecLoading ? (
                 <Loading />
               ) : (
                 <>
                   {lecture.video ? (
-                    <>
+                    <div className="flex flex-wrap">
                       <video
                         src={`${server}/${lecture.video}`}
+                        style={{
+                          WebkitProgressBar: { backgroundColor: "#ff0000" },
+                          MozProgressBar: { backgroundColor: "#00ff00" },
+                        }}
                         width="100%"
                         controls
                         controlsList="nodownload noremoteplayback"
@@ -203,7 +207,7 @@ const Lecture = ({ user }) => {
                         {lecture.title}
                       </h1>
                       <h3 className="text-white mt-4">{lecture.description}</h3>
-                    </>
+                    </div>
                   ) : (
                     <h1 className="text-white text-xl">
                       Please Select a Lecture
@@ -212,7 +216,7 @@ const Lecture = ({ user }) => {
                 </>
               )}
             </div>
-            <div className="w-4/12 p-4">
+            <div className="md:w-4/12 w-full p-4">
               {user && user.role === "admin" && (
                 <button
                   className="bg-blue-500 text-white px-4 py-2 rounded-md mb-4"
@@ -268,7 +272,7 @@ const Lecture = ({ user }) => {
                   </form>
                 </div>
               )}
-
+              <h4 className="text-white text-xl mt-4">PlayList</h4>
               {lectures && lectures.length > 0 ? (
                 lectures.map((e, i) => (
                   <div key={i}>
@@ -299,7 +303,7 @@ const Lecture = ({ user }) => {
                   </div>
                 ))
               ) : (
-                <p className="text-white">No Lectures Yet!</p>
+                <p className="text-center">No Lectures</p>
               )}
             </div>
           </div>

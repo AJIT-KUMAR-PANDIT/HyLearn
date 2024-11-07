@@ -6,3 +6,13 @@
 body {
     background-color: black;
 }
+
+.video-bar::-webkit-progress-bar {
+    background-color: #ff0000;
+
+}
+
+.video-bar::-moz-progress-bar {
+    background-color: #00ff00;
+
+}

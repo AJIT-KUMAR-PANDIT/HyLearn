@@ -3,7 +3,6 @@ import Layout from "../Utils/Layout";
 import { useNavigate } from "react-router-dom";
 import { CourseData } from "../../context/CourseContext";
 import CourseCard from "../../components/coursecard/CourseCard";
-import "./admincourses.css";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { server } from "../../main";
@@ -84,88 +83,116 @@ const AdminCourses = ({ user }) => {
 
   return (
     <Layout>
-      <div className="admin-courses">
-        <div className="left">
-          <h1>All Courses</h1>
-          <div className="dashboard-content">
+      <div className="flex flex-col md:flex-row justify-center flex-wrap gap-4 py-4 px-4 md:px-8 lg:px-16">
+        <div className="w-full md:w-2/3">
+          <h1 className="text-2xl font-semibold mb-4">All Courses</h1>
+          <div className="flex flex-wrap justify-around gap-5 mt-10 ml-1">
             {courses && courses.length > 0 ? (
-              courses.map((e) => {
-                return <CourseCard key={e._id} course={e} />;
-              })
+              courses.map((e) => <CourseCard key={e._id} course={e} />)
             ) : (
-              <p>No Courses Yet</p>
+              <p className="text-center text-lg">No Courses Yet</p>
             )}
           </div>
         </div>
-        <div className="right">
-          <div className="add-course">
-            <div className="course-form">
-              <h2>Add Course</h2>
-              <form onSubmit={submitHandler}>
-                <label htmlFor="text">Title</label>
+        <div className="w-full md:w-1/3">
+          <div className="bg-gray-800 p-6 rounded-lg shadow-md text-white mt-10 md:mt-0">
+            <h2 className="text-xl text-green-500 font-bold mb-4 text-center">
+              Add Course
+            </h2>
+            <form onSubmit={submitHandler} className="space-y-4 text-left">
+              <div>
+                <label className="block mb-1">Title</label>
                 <input
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   required
+                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100"
                 />
+              </div>
 
-                <label htmlFor="text">Description</label>
+              <div>
+                <label className="block mb-1">Description</label>
                 <input
                   type="text"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   required
+                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100"
                 />
+              </div>
 
-                <label htmlFor="text">Price</label>
+              <div>
+                <label className="block mb-1">Price</label>
                 <input
                   type="number"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                   required
+                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100"
                 />
+              </div>
 
-                <label htmlFor="text">createdBy</label>
+              <div>
+                <label className="block mb-1">Created By</label>
                 <input
                   type="text"
                   value={createdBy}
                   onChange={(e) => setCreatedBy(e.target.value)}
                   required
+                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100"
                 />
+              </div>
 
-                <select id = "select-category"
+              <div>
+                <label className="block mb-1">Category</label>
+                <select
+                  id="select-category"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100"
                 >
-                  <option value={""}>Select Category</option>
+                  <option value="">Select Category</option>
                   {categories.map((e) => (
                     <option value={e} key={e}>
                       {e}
                     </option>
                   ))}
                 </select>
+              </div>
 
-                <label htmlFor="text">Duration</label>
+              <div>
+                <label className="block mb-1">Duration</label>
                 <input
                   type="number"
                   value={duration}
                   onChange={(e) => setDuration(e.target.value)}
                   required
+                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100"
                 />
+              </div>
 
-                <input type="file" required onChange={changeImageHandler} />
-                {imagePrev && <img src={imagePrev} alt="" width={300} />}
+              <div>
+                <label className="block mb-1">Image</label>
+                <input
+                  type="file"
+                  required
+                  onChange={changeImageHandler}
+                  className="w-full text-white"
+                />
+                {imagePrev && (
+                  <img src={imagePrev} alt="" width={300} className="mt-4" />
+                )}
+              </div>
 
-                <button
-                  type="submit"
-                  disabled={btnLoading}
-                  className="common-btn"
-                >
-                  {btnLoading ? "Please Wait..." : "Add"}
-                </button>
-              </form>
-            </div>
+              <button
+                type="submit"
+                disabled={btnLoading}
+                className="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all"
+              >
+                {btnLoading ? "Please Wait..." : "Add"}
+              </button>
+            </form>
           </div>
         </div>
       </div>
