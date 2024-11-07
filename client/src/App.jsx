@@ -92,6 +92,8 @@ const App = () => {
             />
           </Routes>
           <Footer />
+
+          <div className="h-[88px]"></div>
         </BrowserRouter>
       )}
     </>

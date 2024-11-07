@@ -5,6 +5,7 @@ import { server } from "../../main";
 import Loading from "../../components/loading/Loading";
 import toast from "react-hot-toast";
 import { TiTick } from "react-icons/ti";
+import { SiGoogledisplayandvideo360 } from "react-icons/si";
 
 const Lecture = ({ user }) => {
   const [lectures, setLectures] = useState([]);
@@ -232,8 +233,17 @@ const Lecture = ({ user }) => {
                       ></video>
                       <h1 className="text-white text-2xl mt-4">
                         {lecture.title}
-                        <button onClick={viewNotes}>View Notes</button>
+                        <button
+                          onClick={viewNotes}
+                          className="bg-[#bfbc2a] p-3 rounded-md absolute right-1"
+                        >
+                          View Notes
+                        </button>
                       </h1>
+                      <br />
+                      <br />
+                      <br />
+                      <br />
                       <h3 className="text-white mt-4">{lecture.description}</h3>
                     </div>
                   ) : (
@@ -318,7 +328,7 @@ const Lecture = ({ user }) => {
                   <div key={i}>
                     <div
                       onClick={() => fetchLecture(e._id)}
-                      className={`p-3 border mb-2 rounded-md cursor-pointer ${
+                      className={`p-3 border mb-2 rounded-md cursor-pointer flex justify-between hover:bg-blue-500 hover:text-white ${
                         lecture._id === e._id
                           ? "bg-blue-500 text-white"
                           : "bg-white"
@@ -331,6 +341,9 @@ const Lecture = ({ user }) => {
                             <TiTick />
                           </span>
                         )}
+                      <span className="relative right-1">
+                        <SiGoogledisplayandvideo360 />
+                      </span>
                     </div>
                     {user && user.role === "admin" && (
                       <button
