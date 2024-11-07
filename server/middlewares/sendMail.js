@@ -9,7 +9,6 @@ const sendMail = async (email, subject, data) => {
       pass: process.env.Password,
     },
   });
-  
 
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -135,7 +134,7 @@ export const sendForgotMail = async (subject, data) => {
     <p>If you did not request this, please ignore this email.</p>
     <div class="footer">
       <p>Thank you,<br>Your Website Team</p>
-      <p><a href="https://yourwebsite.com">yourwebsite.com</a></p>
+      <p><a href="https://hylearn.vercel.app">hylearn.vercel.app</a></p>
     </div>
   </div>
 </body>
