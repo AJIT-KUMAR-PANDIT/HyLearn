@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Search } from "lucide-react";
+import { FaSearch } from "react-icons/fa";
 import { CourseData } from "../../context/CourseContext";
 import CourseCard from "../../components/coursecard/CourseCard";
 
@@ -44,7 +44,7 @@ const Courses = () => {
             type="submit"
             className="p-2 text-gray-500 hover:text-white bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border"
           >
-            <Search className="h-5 w-5" />
+            <FaSearch className="h-5 w-5" />
           </button>
         </form>
       </div>

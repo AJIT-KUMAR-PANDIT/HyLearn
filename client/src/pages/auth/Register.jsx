@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserData } from "../../context/UserContext";
 
@@ -13,6 +13,29 @@ const Register = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     await registerUser(name, email, password, userType, navigate);
+  };
+
+  useEffect(() => {
+    // Initialize Google Sign-In
+    window.google.accounts.id.initialize({
+      client_id: "YOUR_GOOGLE_CLIENT_ID", // Replace with your Google Client ID
+      callback: handleGoogleSignIn,
+    });
+
+    // Render Google Sign-In button
+    window.google.accounts.id.renderButton(
+      document.getElementById("googleSignInButton"),
+      { theme: "outline", size: "large" } // Customize the button's appearance
+    );
+  }, []);
+
+  const handleGoogleSignIn = async (response) => {
+    const token = response.credential;
+    // Here you can send the token to your backend for verification and registration
+    console.log("Google ID Token:", token);
+
+    // Example: Register the user with the Google ID token in your backend
+    // await registerUserWithGoogle(token, navigate);
   };
 
   return (
@@ -74,6 +97,10 @@ const Register = () => {
             {btnLoading ? "Please Wait..." : "Register"}
           </button>
         </form>
+
+        {/* Google Sign-Up Button */}
+        <div id="googleSignInButton" className="mt-4"></div>
+
         <p className="text-white mt-4">
           Have an account?{" "}
           <Link to="/login" className="text-[#04d2d2]">
