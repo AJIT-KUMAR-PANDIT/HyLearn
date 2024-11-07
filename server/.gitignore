@@ -35,3 +35,4 @@ pnpm-debug.log*
 
 # if you use Windows
 Thumbs.db
+/uploads

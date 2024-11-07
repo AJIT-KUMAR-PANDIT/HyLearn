@@ -19,6 +19,7 @@ const Lecture = ({ user }) => {
   const [video, setvideo] = useState("");
   const [videoPrev, setVideoPrev] = useState("");
   const [btnLoading, setBtnLoading] = useState(false);
+  const [notes, setNotes] = useState("");
 
   if (user && user.role !== "admin" && !user.subscription.includes(params.id))
     return navigate("/");
@@ -66,6 +67,26 @@ const Lecture = ({ user }) => {
     };
   };
 
+  const changeNotesHandler = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const allowedTypes = [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/vnd.ms-powerpoint",
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      ];
+
+      if (allowedTypes.includes(file.type)) {
+        setNotes(file);
+      } else {
+        toast.error("Please select a valid file (PDF, DOC, PPT).");
+      }
+    }
+  };
+
   const submitHandler = async (e) => {
     setBtnLoading(true);
     e.preventDefault();
@@ -73,8 +94,10 @@ const Lecture = ({ user }) => {
 
     myForm.append("title", title);
     myForm.append("description", description);
-    myForm.append("file", video);
-
+    myForm.append("video", video);
+    if (notes) {
+      myForm.append("notes", notes);
+    }
     try {
       const { data } = await axios.post(
         `${server}/api/course/${params.id}`,
@@ -166,6 +189,10 @@ const Lecture = ({ user }) => {
     fetchLectures();
     fetchProgress();
   }, []);
+
+  const viewNotes = () => {
+    window.open(`${server}/${lecture.notes}`, "_blank");
+  };
   return (
     <>
       {loading ? (
@@ -205,6 +232,7 @@ const Lecture = ({ user }) => {
                       ></video>
                       <h1 className="text-white text-2xl mt-4">
                         {lecture.title}
+                        <button onClick={viewNotes}>View Notes</button>
                       </h1>
                       <h3 className="text-white mt-4">{lecture.description}</h3>
                     </div>
@@ -246,6 +274,7 @@ const Lecture = ({ user }) => {
                       required
                       className="w-full p-3 mb-4 border rounded-md"
                     />
+                    <label className="block text-sm mb-2">Choose Video</label>
                     <input
                       type="file"
                       placeholder="choose video"
@@ -253,6 +282,17 @@ const Lecture = ({ user }) => {
                       required
                       className="w-full p-3 mb-4 border rounded-md"
                     />
+                    <label className="block text-sm mb-2">
+                      Choose Lecture Notes
+                    </label>
+                    <input
+                      type="file"
+                      placeholder="choose Lecture Notes"
+                      onChange={changeNotesHandler}
+                      className="w-full p-3 mb-4 border rounded-md"
+                      accept=".pdf, .doc, .docx, .ppt, .pptx"
+                    />
+
                     {videoPrev && (
                       <video
                         src={videoPrev}

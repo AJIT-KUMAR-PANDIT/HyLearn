@@ -36,12 +36,15 @@ export const addLectures = TryCatch(async (req, res) => {
 
   const { title, description } = req.body;
 
-  const file = req.file;
+  // Get files from the request
+  const videoFile = req.files?.video ? req.files.video[0] : null;
+  const notesFile = req.files?.notes ? req.files.notes[0] : null;
 
   const lecture = await Lecture.create({
     title,
     description,
-    video: file?.path,
+    video: videoFile.path,
+    notes: notesFile.path,
     course: course._id,
   });
 
