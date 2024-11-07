@@ -8,7 +8,7 @@ import { UserData } from "../../context/UserContext";
 const Sidebar = () => {
   const { user } = UserData();
   return (
-    <div className="sidebar">
+    <div className="sidebar relative left-0">
       <ul>
         <li>
           <Link to={"/admin/dashboard"}>

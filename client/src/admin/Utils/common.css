@@ -32,16 +32,16 @@
         color: aliceblue;
       }
 
-        span {
-          margin-left: 15px;
+      span {
+        margin-left: 15px;
 
-          @media (max-width: 768px) {
-            display: none;
-          }
+        @media (max-width: 768px) {
+          display: none;
         }
       }
     }
   }
+}
 
 
 .dashboard-admin {

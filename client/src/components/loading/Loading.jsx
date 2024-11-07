@@ -1,10 +1,9 @@
 import React from "react";
-import "./loading.css";
-
+import loader from "../../assets/loader.gif";
 const Loading = () => {
   return (
-    <div className="loading-page">
-      <div className="loader"></div>
+    <div className="h-screen w-screen flex justify-center items-center">
+      <img src={loader} alt="Loading" />
     </div>
   );
 };
