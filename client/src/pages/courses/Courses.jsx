@@ -36,19 +36,19 @@ const Courses = () => {
             value={searchTerm}
             onChange={handleSearch}
             placeholder="Search..."
-            className="w-full md:w-[50vw] p-2 pl-10 text-sm text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500
+            className="w-full md:w-[50vw] p-2 pl-10 text-sm text-white border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500
             bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border 
             "
           />
           <button
             type="submit"
-            className="p-2 text-gray-500 hover:text-gray-700 bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border"
+            className="p-2 text-gray-500 hover:text-white bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border"
           >
             <Search className="h-5 w-5" />
           </button>
         </form>
       </div>
-      <div className="flex flex-wrap justify-center gap-8 mt-8">
+      <div className="flex flex-wrap justify-center gap-8 mt-8 text-white">
         {filteredCourses && filteredCourses.length > 0 ? (
           filteredCourses.map((e) => <CourseCard key={e._id} course={e} />)
         ) : (

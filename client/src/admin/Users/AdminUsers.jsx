@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./users.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { server } from "../../main";
@@ -20,7 +19,6 @@ const AdminUsers = ({ user }) => {
           token: localStorage.getItem("token"),
         },
       });
-
       setUsers(data.users);
     } catch (error) {
       console.log(error);
@@ -32,7 +30,7 @@ const AdminUsers = ({ user }) => {
   }, []);
 
   const updateRole = async (id) => {
-    if (confirm("are you sure you want to update this user role")) {
+    if (confirm("Are you sure you want to update this user role?")) {
       try {
         const { data } = await axios.put(
           `${server}/api/user/${id}`,
@@ -52,41 +50,39 @@ const AdminUsers = ({ user }) => {
     }
   };
 
-  console.log(users);
   return (
     <Layout>
-      <div className="users">
-        <h1>All Users</h1>
-        <table border={"black"}>
+      <div className="bg-black bg-opacity-80 text-white w-full overflow-x-auto whitespace-nowrap p-6 my-5 min-h-[57vh] border border-gray-400 mx-auto">
+        <h1 className="text-center text-blue-500 mb-6">All Users</h1>
+        <table className="w-full border-collapse">
           <thead>
             <tr>
-              <td>#</td>
-              <td>name</td>
-              <td>email</td>
-              <td>role</td>
-              <td>update role</td>
+              <th className="border border-gray-400 p-2">#</th>
+              <th className="border border-gray-400 p-2">Name</th>
+              <th className="border border-gray-400 p-2">Email</th>
+              <th className="border border-gray-400 p-2">Role</th>
+              <th className="border border-gray-400 p-2">Update Role</th>
             </tr>
           </thead>
-
-          {users &&
-            users.map((e, i) => (
-              <tbody>
-                <tr>
-                  <td>{i + 1}</td>
-                  <td>{e.name}</td>
-                  <td>{e.email}</td>
-                  <td>{e.role}</td>
-                  <td>
+          <tbody>
+            {users &&
+              users.map((user, index) => (
+                <tr key={user._id} className="text-center">
+                  <td className="border border-gray-400 p-2">{index + 1}</td>
+                  <td className="border border-gray-400 p-2">{user.name}</td>
+                  <td className="border border-gray-400 p-2">{user.email}</td>
+                  <td className="border border-gray-400 p-2">{user.role}</td>
+                  <td className="border border-gray-400 p-2">
                     <button
-                      onClick={() => updateRole(e._id)}
-                      className="common-btn"
+                      onClick={() => updateRole(user._id)}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
                     >
                       Update Role
                     </button>
                   </td>
                 </tr>
-              </tbody>
-            ))}
+              ))}
+          </tbody>
         </table>
       </div>
     </Layout>
