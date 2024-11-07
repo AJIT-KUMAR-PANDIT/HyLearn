@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../Utils/Layout";
 import axios from "axios";
 import { server } from "../../main";
-import "./dashboard.css";
 
 const AdminDashbord = ({ user }) => {
   const navigate = useNavigate();
@@ -29,21 +28,22 @@ const AdminDashbord = ({ user }) => {
   useEffect(() => {
     fetchStats();
   }, []);
+
   return (
     <div>
       <Layout>
-        <div className="main-content">
-          <div className="box">
+        <div className="flex justify-center items-center flex-wrap gap-4 py-4 px-4">
+          <div className=" text-lime-500 rounded-lg text-center p-4 hover:bg-opacity-60 hover:text-green-400 transition-all bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
             <p>Total Courses</p>
-            <p>{stats.totalCoures}</p>
+            <p className="text-lg font-semibold">{stats.totalCoures}</p>
           </div>
-          <div className="box">
+          <div className=" text-lime-500 rounded-lg text-center p-4 hover:bg-opacity-60 hover:text-green-400 transition-all bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
             <p>Total Lectures</p>
-            <p>{stats.totalLectures}</p>
+            <p className="text-lg font-semibold">{stats.totalLectures}</p>
           </div>
-          <div className="box">
+          <div className=" text-lime-500 rounded-lg text-center p-4 hover:bg-opacity-60 hover:text-green-400 transition-all bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
             <p>Total Users</p>
-            <p>{stats.totalUsers}</p>
+            <p className="text-lg font-semibold">{stats.totalUsers}</p>
           </div>
         </div>
       </Layout>

@@ -1,31 +1,17 @@
 import React from "react";
-import "./about.css";
 
 const About = () => {
   return (
-    <div className="about">
-      <div className="about-content">
-        <h2>About Us</h2>
-        <p>
-          We are dedicated to providing high quality online courses to help
-          individuals learn and grow in their desired fields. Our experienced
-          instruction ensure that each course is tailored for effective learning
-          and practical application.We are dedicated to providing high quality online courses to help
-          individuals learn and grow in their desired fields. Our experienced
-          instruction ensure that each course is tailored for effective learning
-          and practical application.We are dedicated to providing high quality online courses to help
-          individuals learn and grow in their desired fields. Our experienced
-          instruction ensure that each course is tailored for effective learning
-          and practical application.We are dedicated to providing high quality online courses to help
-          individuals learn and grow in their desired fields. Our experienced
-          instruction ensure that each course is tailored for effective learning
-          and practical application.We are dedicated to providing high quality online courses to help
-          individuals learn and grow in their desired fields. Our experienced
-          instruction ensure that each course is tailored for effective learning
-          and practical application.We are dedicated to providing high quality online courses to help
-          individuals learn and grow in their desired fields. Our experienced
-          instruction ensure that each course is tailored for effective learning
-          and practical application.
+    <div className="py-20 min-h-[55vh] bg-white text-center">
+      <div className="max-w-3xl mx-auto bg-whitesmoke border-l-2 border-gray-400 px-10 text-justify">
+        <h2 className="text-4xl text-blue-700 mb-5 font-extrabold">About Us</h2>
+        <p className="text-base text-gray-800 leading-relaxed">
+          HyLearn: Empowering Modern Education Welcome to HyLearn, a
+          cutting-edge educational platform designed to revolutionize how
+          students learn, grow, and succeed. Developed with innovation and
+          accessibility in mind, HyLearn offers a seamless digital learning
+          experience for learners across various age groups, fields, and
+          interests.
         </p>
       </div>
     </div>
