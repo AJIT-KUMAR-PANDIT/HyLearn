@@ -84,17 +84,7 @@ const AdminCourses = ({ user }) => {
   return (
     <Layout>
       <div className="flex flex-col md:flex-row justify-center flex-wrap gap-4 py-4 px-4 md:px-8 lg:px-16">
-        <div className="w-full md:w-2/3">
-          <h1 className="text-2xl font-semibold mb-4">All Courses</h1>
-          <div className="flex flex-wrap justify-around gap-5 mt-10 ml-1">
-            {courses && courses.length > 0 ? (
-              courses.map((e) => <CourseCard key={e._id} course={e} />)
-            ) : (
-              <p className="text-center text-lg">No Courses Yet</p>
-            )}
-          </div>
-        </div>
-        <div className="w-full md:w-1/3">
+        <div className="md:absolute md:right-0 w-full md:w-1/3" id="hideInPc">
           <div className="bg-gray-800 p-6 rounded-lg shadow-md text-white mt-10 md:mt-0">
             <h2 className="text-xl text-green-500 font-bold mb-4 text-center">
               Add Course
@@ -107,7 +97,7 @@ const AdminCourses = ({ user }) => {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   required
-                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100"
+                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100 text-black"
                 />
               </div>
 
@@ -118,7 +108,7 @@ const AdminCourses = ({ user }) => {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   required
-                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100"
+                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100 text-black"
                 />
               </div>
 
@@ -129,7 +119,7 @@ const AdminCourses = ({ user }) => {
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                   required
-                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100"
+                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100 text-black"
                 />
               </div>
 
@@ -140,7 +130,7 @@ const AdminCourses = ({ user }) => {
                   value={createdBy}
                   onChange={(e) => setCreatedBy(e.target.value)}
                   required
-                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100"
+                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100 text-black"
                 />
               </div>
 
@@ -150,7 +140,7 @@ const AdminCourses = ({ user }) => {
                   id="select-category"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100"
+                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100 text-black"
                 >
                   <option value="">Select Category</option>
                   {categories.map((e) => (
@@ -168,7 +158,7 @@ const AdminCourses = ({ user }) => {
                   value={duration}
                   onChange={(e) => setDuration(e.target.value)}
                   required
-                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100"
+                  className="w-full p-2 border border-gray-300 rounded-md bg-yellow-100 text-black"
                 />
               </div>
 
@@ -193,6 +183,16 @@ const AdminCourses = ({ user }) => {
                 {btnLoading ? "Please Wait..." : "Add"}
               </button>
             </form>
+          </div>
+        </div>
+        <div className="w-full md:w-2/3">
+          <h1 className="text-2xl font-semibold mb-4">All Courses</h1>
+          <div className="flex flex-wrap justify-around gap-5 mt-10 ml-1">
+            {courses && courses.length > 0 ? (
+              courses.map((e) => <CourseCard key={e._id} course={e} />)
+            ) : (
+              <p className="text-center text-lg">No Courses Yet</p>
+            )}
           </div>
         </div>
       </div>
