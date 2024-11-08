@@ -22,6 +22,9 @@ import AdminCourses from "./admin/Courses/AdminCourses";
 import AdminUsers from "./admin/Users/AdminUsers";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
+import QuizAdminDashboard from "./components/quizzes/QuizAdminDashboard";
+import QuizList from "./components/quizzes/QuizList";
+import QuizAttempt from "./components/quizzes/QuizAttempt";
 
 const App = () => {
   const { isAuth, user, loading } = UserData();
@@ -37,6 +40,9 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/courses" element={<Courses />} />
+            <Route path="quiz/admin" element={<QuizAdminDashboard />} />
+            <Route path="quiz/" element={<QuizList />} />
+            <Route path="/quiz/:id" element={<QuizAttempt />} />
             <Route
               path="/account"
               element={isAuth ? <Account user={user} /> : <Login />}
