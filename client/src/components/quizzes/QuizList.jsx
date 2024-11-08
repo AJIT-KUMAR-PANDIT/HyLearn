@@ -34,7 +34,7 @@ const QuizList = () => {
           {quizzes.map((quiz) => (
             <li key={quiz._id} className="bg-white shadow p-4 rounded-lg">
               <Link to={`/quiz/${quiz._id}`} className="text-lg font-medium">
-                {quiz.title}
+                <span className="w-f"> {quiz.title}</span>
               </Link>
             </li>
           ))}

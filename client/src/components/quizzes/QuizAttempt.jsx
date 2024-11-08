@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { server } from "../../main";
-import { Clock } from "lucide-react";
+import { FaRegClock } from "react-icons/fa";
 
 const QuizAttempt = () => {
   const { id } = useParams();
@@ -71,7 +71,7 @@ const QuizAttempt = () => {
       <h1 className="text-3xl font-bold mb-4">{quiz.title}</h1>
       <p className="text-lg mb-8">{quiz.description}</p>
       <div className="flex justify-end mb-4">
-        <Clock className="mr-2" />
+        <FaRegClock className="mr-2" />
         <span className="text-lg">Time Left: {formatTime(timeLeft)}</span>
       </div>
       {quiz.questions.map((question, index) => (
