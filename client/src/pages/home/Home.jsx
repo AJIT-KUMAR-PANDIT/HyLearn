@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Testimonials from "../../components/testimonials/Testimonials";
 import Logo from "../../components/Logo/Logo";
+import CourseExplore from "../../components/courseExplore/CourseExplore";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Home = () => {
           </button>
         </div>
       </div>
-
+      <CourseExplore />
       <Testimonials />
     </div>
   );
