@@ -6,6 +6,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { server } from "../../main";
 
 const QuizAdminDashboard = () => {
+  const calculatedHeight = `calc(100vh - 138px)`;
   const [quizzes, setQuizzes] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
@@ -512,8 +513,11 @@ const QuizAdminDashboard = () => {
       </div>
       {/* Edit Quiz Modal */}
       {editModalOpen && (
-        <div className="overflow-auto pt-12 fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg w-full max-w-md">
+        <div className=" fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div
+            className=" overflow-auto bg-white p-6 rounded-lg w-full max-w-md"
+            style={{ height: calculatedHeight }}
+          >
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">Edit Quiz</h2>
               <button
@@ -570,7 +574,7 @@ const QuizAdminDashboard = () => {
             {editFormData.questions.map((question, qIndex) => (
               <div key={qIndex} className="mb-4 border-b pb-4">
                 <label className="block text-sm font-medium mb-2">
-                  Question Text
+                  Question {qIndex + 1}
                 </label>
                 <input
                   type="text"
