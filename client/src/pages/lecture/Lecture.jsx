@@ -233,12 +233,17 @@ const Lecture = ({ user }) => {
                       ></video>
                       <h1 className="text-white text-2xl mt-4">
                         {lecture.title}
-                        <button
-                          onClick={viewNotes}
-                          className="bg-[#bfbc2a] p-3 rounded-md absolute right-1"
-                        >
-                          View Notes
-                        </button>
+
+                        {lecture.notes === "" ? (
+                          <></>
+                        ) : (
+                          <button
+                            onClick={viewNotes}
+                            className="bg-[#bfbc2a] p-3 rounded-md absolute right-1"
+                          >
+                            View Notes
+                          </button>
+                        )}
                       </h1>
                       <br />
                       <br />
@@ -263,7 +268,6 @@ const Lecture = ({ user }) => {
                   {show ? "Close" : "Add Lecture +"}
                 </button>
               )}
-
               {show && (
                 <div className="bg-white p-6 rounded-lg shadow-md">
                   <h2 className="text-2xl mb-4">Add Lecture</h2>
@@ -323,41 +327,46 @@ const Lecture = ({ user }) => {
                 </div>
               )}
               <h4 className="text-white text-xl mt-4">PlayList</h4>
-              {lectures && lectures.length > 0 ? (
-                lectures.map((e, i) => (
-                  <div key={i}>
-                    <div
-                      onClick={() => fetchLecture(e._id)}
-                      className={`p-3 border mb-2 rounded-md cursor-pointer flex justify-between hover:bg-blue-500 hover:text-white ${
-                        lecture._id === e._id
-                          ? "bg-blue-500 text-white"
-                          : "bg-white"
-                      }`}
-                    >
-                      {i + 1}. {e.title}
-                      {progress[0] &&
-                        progress[0].completedLectures.includes(e._id) && (
-                          <span className="text-green-500 ml-2">
-                            <TiTick />
-                          </span>
-                        )}
-                      <span className="relative right-1">
-                        <SiGoogledisplayandvideo360 />
-                      </span>
-                    </div>
-                    {user && user.role === "admin" && (
-                      <button
-                        className="bg-red-500 text-white px-4 py-2 rounded-md mt-2"
-                        onClick={() => deleteHandler(e._id)}
+              <div className="h-[628px] overflow-y-auto p-4">
+                {lectures && lectures.length > 0 ? (
+                  lectures.map((e, i) => (
+                    <div key={i}>
+                      <div
+                        onClick={() => fetchLecture(e._id)}
+                        className={`p-3 border mb-2 rounded-md cursor-pointer flex justify-between hover:bg-blue-500 hover:text-white ${
+                          lecture._id === e._id
+                            ? "bg-blue-500 text-white"
+                            : "bg-white"
+                        }`}
                       >
-                        Delete {e.title}
-                      </button>
-                    )}
-                  </div>
-                ))
-              ) : (
-                <p className="text-center">No Lectures</p>
-              )}
+                        {i + 1}. {e.title}
+                        {progress[0] &&
+                          progress[0].completedLectures.includes(e._id) && (
+                            <span className="text-green-500 ml-2">
+                              <TiTick />
+                            </span>
+                          )}
+                        <span className="relative right-1">
+                          <SiGoogledisplayandvideo360 />
+                        </span>
+                      </div>
+                      {user && user.role === "admin" && (
+                        <button
+                          className="bg-red-500 text-white px-4 py-2 rounded-md mt-2"
+                          onClick={() => deleteHandler(e._id)}
+                        >
+                          Delete {e.title}
+                        </button>
+                      )}
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-center">No Lectures</p>
+                )}
+              </div>{" "}
+              <div className="text-white bg-[#07abf2] text-4xl p-4">
+                Give Quiz
+              </div>
             </div>
           </div>
         </>
