@@ -25,6 +25,7 @@ import ResetPassword from "./pages/auth/ResetPassword";
 import QuizAdminDashboard from "./components/quizzes/QuizAdminDashboard";
 import QuizList from "./components/quizzes/QuizList";
 import QuizAttempt from "./components/quizzes/QuizAttempt";
+import NotFound from "./components/NotFound/NotFound";
 
 const App = () => {
   const { isAuth, user, loading } = UserData();
@@ -96,6 +97,7 @@ const App = () => {
               path="/admin/users"
               element={isAuth ? <AdminUsers user={user} /> : <Login />}
             />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
 
