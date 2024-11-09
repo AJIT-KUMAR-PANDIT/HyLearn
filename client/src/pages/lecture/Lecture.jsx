@@ -327,7 +327,7 @@ const Lecture = ({ user }) => {
                 </div>
               )}
               <h4 className="text-white text-xl mt-4">PlayList</h4>
-              <div className="h-[628px] overflow-y-auto p-4">
+              <div className="max-h-[628px] overflow-y-auto p-4">
                 {lectures && lectures.length > 0 ? (
                   lectures.map((e, i) => (
                     <div key={i}>
