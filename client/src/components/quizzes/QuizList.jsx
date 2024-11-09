@@ -29,21 +29,21 @@ const QuizList = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-4 sm:p-6 md:p-8">
-      <h1 className="text-3xl font-bold mb-4">Available Quizzes</h1>
+      <h1 className="text-3xl font-bold mb-4 text-white">Available Quizzes</h1>
       {loading ? (
         <Loading />
       ) : error ? (
         <p className="text-red-600">{error}</p>
       ) : (
-        <ul className="space-y-2">
+        <div className="space-y-2">
           {quizzes.map((quiz) => (
-            <li key={quiz._id} className="bg-white shadow p-4 rounded-lg">
+            <div key={quiz._id} className="bg-white shadow p-4 rounded-lg">
               <Link to={`/quiz/${quiz._id}`} className="text-lg font-medium">
-                <span className="w-f"> {quiz.title}</span>
+                <div className="max-w-3xl min-h-[32px]"> {quiz.title}</div>
               </Link>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

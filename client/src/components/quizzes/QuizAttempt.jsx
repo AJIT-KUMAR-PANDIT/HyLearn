@@ -84,7 +84,7 @@ const QuizAttempt = () => {
             {index + 1}. {question.questionText}
           </p>
           {question.options.map((option, idx) => (
-            <div key={idx} className="mb-2">
+            <label key={idx} className="mb-2 flex items-center">
               <input
                 type="radio"
                 name={`question-${index}`}
@@ -93,8 +93,10 @@ const QuizAttempt = () => {
                 onChange={() => handleOptionChange(index, idx)}
                 className="mr-2"
               />
-              <span className="text-lg">{option.text}</span>
-            </div>
+              <div className="cursor-pointer">
+                <span className="text-lg">{option.text}</span>
+              </div>
+            </label>
           ))}
         </div>
       ))}
