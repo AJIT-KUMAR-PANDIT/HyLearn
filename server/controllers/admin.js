@@ -9,19 +9,21 @@ import { User } from "../models/User.js";
 export const createCourse = TryCatch(async (req, res) => {
   const { title, description, category, createdBy, duration, price } = req.body;
 
-  const image = req.file;
+  const imageFile = req.files?.file ? req.files.file[0] : null;
 
   await Courses.create({
     title,
     description,
     category,
     createdBy,
-    image: image?.path,
+    image: imageFile ? `uploads/${imageFile.filename}` : null,
     duration,
     price,
   });
 
+  const filePath = imageFile ? imageFile.filename : null;
   res.status(201).json({
+    filePath,
     message: "Course Created Successfully",
   });
 });

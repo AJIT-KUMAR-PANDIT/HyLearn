@@ -14,8 +14,14 @@ const storage = multer.diskStorage({
   },
 });
 
-// Multer middleware to handle two different file fields: "video" and "notes"
-export const uploadFiles = multer({ storage }).fields([
-  { name: "video", maxCount: 1 }, // Single file for "video"
-  { name: "notes", maxCount: 1 }, // Single file for "notes"
+// Multer middleware to handle multiple fields: "image", "video", and "notes"
+export const uploadFiles = multer({
+  storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5, // Limit file size to 5MB
+  },
+}).fields([
+  { name: "file", maxCount: 1 }, // Field name "image" for image
+  { name: "video", maxCount: 1 }, // Field name "video" for video
+  { name: "notes", maxCount: 1 }, // Field name "notes" for notes
 ]);

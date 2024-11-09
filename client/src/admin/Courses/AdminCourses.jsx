@@ -29,6 +29,7 @@ const AdminCourses = ({ user }) => {
   const [image, setImage] = useState("");
   const [imagePrev, setImagePrev] = useState("");
   const [btnLoading, setBtnLoading] = useState(false);
+  const [uploadedImagePath, setUploadedImagePath] = useState("");
 
   const changeImageHandler = (e) => {
     const file = e.target.files[0];
@@ -49,7 +50,6 @@ const AdminCourses = ({ user }) => {
     setBtnLoading(true);
 
     const myForm = new FormData();
-
     myForm.append("title", title);
     myForm.append("description", description);
     myForm.append("category", category);
@@ -64,8 +64,8 @@ const AdminCourses = ({ user }) => {
           token: localStorage.getItem("token"),
         },
       });
-
       toast.success(data.message);
+      setUploadedImagePath(`${server}/uploads/${data.filePath}`);
       setBtnLoading(false);
       await fetchCourses();
       setImage("");
@@ -182,6 +182,12 @@ const AdminCourses = ({ user }) => {
               >
                 {btnLoading ? "Please Wait..." : "Add"}
               </button>
+
+              {uploadedImagePath && (
+                <p className="text-center mt-4 text-green-500">
+                  Image uploaded successfully: {uploadedImagePath}
+                </p>
+              )}
             </form>
           </div>
         </div>
