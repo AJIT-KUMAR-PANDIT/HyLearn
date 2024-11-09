@@ -11,7 +11,11 @@ const QuizList = () => {
   useEffect(() => {
     const fetchQuizzes = async () => {
       try {
-        const response = await axios.get(`${server}/api/quizzes`);
+        const response = await axios.get(`${server}/api/quizzes`, {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        });
         setQuizzes(response.data);
       } catch (error) {
         setError(error.message);

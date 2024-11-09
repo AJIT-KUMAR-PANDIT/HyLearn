@@ -41,9 +41,15 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/courses" element={<Courses />} />
-            <Route path="quiz/admin" element={<QuizAdminDashboard />} />
-            <Route path="quiz/" element={<QuizList />} />
-            <Route path="/quiz/:id" element={<QuizAttempt />} />
+            <Route
+              path="quiz/admin"
+              element={isAuth ? <QuizAdminDashboard user={user} /> : <Login />}
+            />
+            <Route path="/quiz" element={isAuth ? <QuizList /> : <Login />} />
+            <Route
+              path="/quiz/:id"
+              element={isAuth ? <QuizAttempt /> : <Login />}
+            />
             <Route
               path="/account"
               element={isAuth ? <Account user={user} /> : <Login />}

@@ -1,4 +1,5 @@
 import express from "express";
+import { isAdmin, isAuth } from "../middlewares/isAuth.js";
 import {
   createQuiz,
   getAllQuizzes,
@@ -9,10 +10,10 @@ import {
 
 const router = express.Router();
 
-router.post("/", createQuiz);
-router.get("/", getAllQuizzes);
-router.get("/:id", getQuiz);
-router.put("/:id", updateQuiz);
-router.delete("/:id", deleteQuiz);
+router.post("/", isAuth, isAdmin, createQuiz);
+router.get("/", isAuth, getAllQuizzes);
+router.get("/:id", isAuth, getQuiz);
+router.put("/:id", isAuth, isAdmin, updateQuiz);
+router.delete("/:id", isAuth, isAdmin, deleteQuiz);
 
 export default router;

@@ -15,7 +15,11 @@ const QuizAttempt = () => {
 
   useEffect(() => {
     const fetchQuiz = async () => {
-      const response = await axios.get(`${server}/api/quizzes/${id}`);
+      const response = await axios.get(`${server}/api/quizzes/${id}`, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      });
       setQuiz(response.data);
       setTimeLeft(response.data.timeLimit * 60); // Convert minutes to seconds
     };

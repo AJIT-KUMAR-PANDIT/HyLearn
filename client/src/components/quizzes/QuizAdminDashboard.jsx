@@ -4,8 +4,13 @@ import { FaPlusSquare, FaEdit } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { AiOutlineClose } from "react-icons/ai";
 import { server } from "../../main";
+import { useNavigate } from "react-router-dom";
 
-const QuizAdminDashboard = () => {
+const QuizAdminDashboard = ({ user }) => {
+  const navigate = useNavigate();
+
+  if (user && user.role !== "admin") return navigate("/");
+
   const calculatedHeight = `calc(100vh - 138px)`;
   const [quizzes, setQuizzes] = useState([]);
   const [formData, setFormData] = useState({
@@ -47,7 +52,11 @@ const QuizAdminDashboard = () => {
   const fetchQuizzes = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${server}/api/quizzes`);
+      const response = await axios.get(`${server}/api/quizzes`, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      });
       setQuizzes(response.data);
     } catch (err) {
       setError("Failed to load quizzes. Please try again.");
@@ -128,7 +137,11 @@ const QuizAdminDashboard = () => {
 
     try {
       setLoading(true);
-      await axios.post(`${server}/api/quizzes`, formData);
+      await axios.post(`${server}/api/quizzes`, formData, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      });
       await fetchQuizzes();
       setSuccess("Quiz added successfully!");
       setFormData({
@@ -204,7 +217,11 @@ const QuizAdminDashboard = () => {
     try {
       setLoading(true);
       const { id, ...quizData } = editFormData; // Extract ID to use in URL
-      await axios.put(`${server}/api/quizzes/${id}`, quizData);
+      await axios.put(`${server}/api/quizzes/${id}`, quizData, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      });
       setSuccess("Quiz updated successfully!");
       setEditModalOpen(false);
       fetchQuizzes();
@@ -218,7 +235,11 @@ const QuizAdminDashboard = () => {
   const deleteQuiz = async (id) => {
     try {
       setLoading(true);
-      await axios.delete(`${server}/api/quizzes/${id}`);
+      await axios.delete(`${server}/api/quizzes/${id}`, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      });
       setQuizzes(quizzes.filter((quiz) => quiz._id !== id));
       setSuccess("Quiz deleted successfully!");
     } catch (err) {
