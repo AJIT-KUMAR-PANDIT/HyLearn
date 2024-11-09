@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserData } from "../../context/UserContext";
 import { CourseData } from "../../context/CourseContext";
@@ -6,20 +6,50 @@ import { CourseData } from "../../context/CourseContext";
 const Login = () => {
   const navigate = useNavigate();
   const { btnLoading, loginUser } = UserData();
+  const { fetchMyCourse } = CourseData();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { fetchMyCourse } = CourseData();
-
+  // Handle form submission for email/password login
   const submitHandler = async (e) => {
     e.preventDefault();
     await loginUser(email, password, navigate, fetchMyCourse);
+  };
+
+  useEffect(() => {
+    // Initialize Google Sign-In
+    window.google.accounts.id.initialize({
+      client_id: import.meta.env.VITE_GOOGLE,
+      callback: handleGoogleSignIn,
+    });
+
+    // Render Google Sign-In button
+    window.google.accounts.id.renderButton(
+      document.getElementById("googleSignInButton"),
+      { theme: "outline", size: "large", text: "signin_with" } // Customizes button text to "Sign in with Google"
+    );
+  }, []);
+
+  // Handle Google Sign-In response
+  const handleGoogleSignIn = async (response) => {
+    const token = response.credential;
+    // Decode the token to get user details (this assumes you’re using JWT format)
+    const userObject = JSON.parse(atob(token.split(".")[1])); // Decodes Google ID token
+    const googleEmail = userObject.email;
+
+    // Auto-fill the email field with the Google email
+    setEmail(googleEmail || "");
+
+    // Optional: log the user in using the Google token
+    // await loginUserWithGoogle(token, navigate, fetchMyCourse);
   };
 
   return (
     <div className="flex items-center justify-center h-[80vh] bg-black/80 ">
       <div className="bg-black/50 p-8 rounded-lg shadow-lg text-center w-80 hover:shadow-2xl transition-shadow bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
         <h2 className="text-2xl text-[#00ff1b] mb-4">Login</h2>
+
         <form onSubmit={submitHandler} className="text-left">
           <label htmlFor="email" className="block text-sm text-white mb-1">
             Email
@@ -51,6 +81,10 @@ const Login = () => {
             {btnLoading ? "Please Wait..." : "Login"}
           </button>
         </form>
+
+        {/* Google Sign-In Button */}
+        <div id="googleSignInButton" className="mt-4"></div>
+
         <p className="text-white mt-4">
           Don't have an account?{" "}
           <Link to="/register" className="text-[#04d2d2]">

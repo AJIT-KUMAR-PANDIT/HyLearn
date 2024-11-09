@@ -18,23 +18,29 @@ const Register = () => {
   useEffect(() => {
     // Initialize Google Sign-In
     window.google.accounts.id.initialize({
-      client_id: "YOUR_GOOGLE_CLIENT_ID", // Replace with your Google Client ID
+      client_id: import.meta.env.VITE_GOOGLE,
       callback: handleGoogleSignIn,
     });
 
-    // Render Google Sign-In button
+    // Render Google Sign-Up button
     window.google.accounts.id.renderButton(
       document.getElementById("googleSignInButton"),
-      { theme: "outline", size: "large" } // Customize the button's appearance
+      { theme: "outline", size: "large", text: "signup_with" } // Customizes button to "Sign up with Google"
     );
   }, []);
 
   const handleGoogleSignIn = async (response) => {
     const token = response.credential;
-    // Here you can send the token to your backend for verification and registration
-    console.log("Google ID Token:", token);
+    // Decode the token to get user details (for simplicity)
+    const userObject = JSON.parse(atob(token.split(".")[1])); // Decodes Google ID token
+    const googleEmail = userObject.email;
+    const googleName = userObject.name;
 
-    // Example: Register the user with the Google ID token in your backend
+    // Auto-fill the form with Google information
+    setEmail(googleEmail || "");
+    setName(googleName || "");
+
+    // Optional: Register the user using Google token
     // await registerUserWithGoogle(token, navigate);
   };
 
@@ -42,6 +48,7 @@ const Register = () => {
     <div className="flex items-center justify-center h-[80vh] bg-black/80">
       <div className="bg-black/50 p-8 shadow-lg text-center w-80 hover:shadow-2xl transition-shadow bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100">
         <h2 className="text-2xl text-[#00ff1b] mb-4">Register</h2>
+
         <form onSubmit={submitHandler} className="text-left">
           <label htmlFor="name" className="block text-sm text-white mb-1">
             Name

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { server } from "../../main";
+import { server, frontend } from "../../main";
 import Loading from "../../components/loading/Loading";
 import toast from "react-hot-toast";
 import { TiTick } from "react-icons/ti";
@@ -25,6 +25,9 @@ const Lecture = ({ user }) => {
   if (user && user.role !== "admin" && !user.subscription.includes(params.id))
     return navigate("/");
 
+  const viewQuiz = () => {
+    window.open(`${frontend}/quiz`, "_blank");
+  };
   async function fetchLectures() {
     try {
       const { data } = await axios.get(`${server}/api/lectures/${params.id}`, {
@@ -364,9 +367,12 @@ const Lecture = ({ user }) => {
                   <p className="text-center">No Lectures</p>
                 )}
               </div>{" "}
-              <div className="text-white bg-[#07abf2] text-4xl p-4">
+              <button
+                className="text-white bg-[#07abf2] text-4xl p-2 w-full"
+                onClick={viewQuiz}
+              >
                 Give Quiz
-              </div>
+              </button>
             </div>
           </div>
         </>
