@@ -5,7 +5,8 @@ import { UserContextProvider } from "./context/UserContext.jsx";
 import { CourseContextProvider } from "./context/CourseContext.jsx";
 import "./index.css";
 
-export const server = "http://localhost:5000";
+export const server = "https://hylearn.onrender.com";
+// http://localhost:5000
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
