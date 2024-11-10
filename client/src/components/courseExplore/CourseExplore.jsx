@@ -46,7 +46,9 @@ const CourseExplore = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {courses.map((course) => (
             <div key={course.id} className="bg-white rounded-lg shadow-md p-4">
-              <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16 mx-auto mb-4"></div>
+              <div className="bg-blue-500 text-white flex justify-center items-center border-2 border-dashed rounded-xl w-16 h-16 mx-auto mb-4">
+                HyLearn
+              </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">
                 {course.title}
               </h3>
