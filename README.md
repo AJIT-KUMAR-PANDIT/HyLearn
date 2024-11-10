@@ -6,14 +6,14 @@ Deployed Link :: [Link](https://hylearn.vercel.app)
 
 # Demo
 
-## User View
+## User View (STUDENT)
 
 ![Image](./student_HyLearn_view.gif)
 
-## Admin View
+## Admin View (CREATOR)
 
 ![Image](./admin_HyLearn_view.gif)
 
-## Super Admin View
+## Super Admin View (ADMIN)
 
 ![Image](./superadmin_HyLearn_view.gif)
