@@ -28,6 +28,14 @@ const Sidebar = () => {
           </Link>
         </li>
 
+        <li>
+          <Link to={"/quiz/admin"}>
+            <div className="icon">
+              <FaBook />
+            </div>
+            <span>Quizzes</span>
+          </Link>
+        </li>
         {user && user.mainrole === "superadmin" && (
           <li>
             <Link to={"/admin/users"}>
