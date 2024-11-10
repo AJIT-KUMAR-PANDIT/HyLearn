@@ -7,42 +7,42 @@ const testimonials = [
     id: 1,
     testimonial:
       "HyLearn has been a game-changer for me. The courses are engaging, informative, and have helped me develop new skills that I can apply in my career.",
-    name: "Emily Chen",
+    name: "Lakshmi",
     occupation: "Marketing Specialist",
   },
   {
     id: 2,
     testimonial:
       "I was blown away by the quality of the instructors and the support team at HyLearn. They're always available to answer questions and provide feedback.",
-    name: "David Lee",
+    name: "Ravi",
     occupation: "Software Engineer",
   },
   {
     id: 3,
     testimonial:
       "HyLearn's courses are well-structured and easy to follow. I've learned so much and I'm excited to apply my new skills in my job.",
-    name: "Sarah Kim",
+    name: "Ananya",
     occupation: "Data Analyst",
   },
   {
     id: 4,
     testimonial:
       "I've tried other online learning platforms, but HyLearn is by far the best. The instructors are knowledgeable and the courses are engaging.",
-    name: "James Davis",
+    name: "Kiran",
     occupation: "Product Manager",
   },
   {
     id: 5,
     testimonial:
       "HyLearn has helped me develop new skills and advance in my career. I highly recommend it to anyone looking to learn new things.",
-    name: "Jessica Brown",
+    name: "Nisha",
     occupation: "UX Designer",
   },
   {
     id: 6,
     testimonial:
       "I was skeptical at first, but HyLearn's courses are really good. The instructors are experienced and the support team is always available to help.",
-    name: "Michael White",
+    name: "Vikram",
     occupation: "DevOps Engineer",
   },
 ];
