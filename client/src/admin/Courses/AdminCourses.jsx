@@ -192,8 +192,10 @@ const AdminCourses = ({ user }) => {
           </div>
         </div>
         <div className="w-full md:w-2/3">
-          <h1 className="text-2xl font-semibold mb-4">All Courses</h1>
-          <div className="flex flex-wrap justify-around gap-5 mt-10 ml-1">
+          <h1 className="text-2xl font-semibold mb-4 text-white">
+            All Courses
+          </h1>
+          <div className="flex flex-wrap justify-around gap-5 mt-10 ml-1 md:w-[70%]">
             {courses && courses.length > 0 ? (
               courses.map((e) => <CourseCard key={e._id} course={e} />)
             ) : (
