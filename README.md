@@ -4,6 +4,8 @@ Deployed Link :: [Link](https://hylearn.vercel.app)
 
 ![Image](./hylearn.png)
 
+## HyLearn is a Online Learning Platform For Learners developed by @AJIT-KUMAR-PANDIT
+
 # Demo
 
 ## User View (STUDENT)
