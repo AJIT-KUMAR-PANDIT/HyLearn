@@ -10,11 +10,29 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [passwordErr, setPasswordErr] = useState(false);
 
   // Handle form submission for email/password login
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    // const regex = new RegExp("^([w]*[w.]*(?!.)@gmail.com)");
+
+    if (password.length === 6) {
+      setPasswordErr(false);
+    } else {
+      setPasswordErr(true);
+    }
     await loginUser(email, password, navigate, fetchMyCourse);
+    // const regex = new RegExp("^[w.+-]+@gmail.com$");
+    // console.log("regex ==========>" + regex.test(email));
+    // if (regex.test(email)) {
+    //   setError(false);
+    //   await loginUser(email, password, navigate, fetchMyCourse);
+    // } else {
+    //   setError(true);
+    // }
   };
 
   useEffect(() => {
@@ -40,9 +58,6 @@ const Login = () => {
 
     // Auto-fill the email field with the Google email
     setEmail(googleEmail || "");
-
-    // Optional: log the user in using the Google token
-    // await loginUserWithGoogle(token, navigate, fetchMyCourse);
   };
 
   return (
@@ -62,6 +77,14 @@ const Login = () => {
             className="w-full p-3 mb-4 border border-[#00ff1b] rounded-lg bg-black text-white placeholder-white"
           />
 
+          {error ? (
+            <div className="bg-[red] text-white font-extrabold text-xl">
+              Only @gmail allowed
+            </div>
+          ) : (
+            <></>
+          )}
+
           <label htmlFor="password" className="block text-sm text-white mb-1">
             Password
           </label>
@@ -72,6 +95,14 @@ const Login = () => {
             required
             className="w-full p-3 mb-4 border border-[#00ff1b] rounded-lg bg-black text-white placeholder-white"
           />
+
+          {passwordErr ? (
+            <div className="bg-[red] text-white font-extrabold text-xl">
+              min 6 char allowed
+            </div>
+          ) : (
+            <></>
+          )}
 
           <button
             disabled={btnLoading}

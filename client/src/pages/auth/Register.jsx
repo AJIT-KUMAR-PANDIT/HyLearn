@@ -39,9 +39,6 @@ const Register = () => {
     // Auto-fill the form with Google information
     setEmail(googleEmail || "");
     setName(googleName || "");
-
-    // Optional: Register the user using Google token
-    // await registerUserWithGoogle(token, navigate);
   };
 
   return (

@@ -24,7 +24,10 @@ app.use(cors());
 const port = process.env.PORT;
 
 app.get("/", (req, res) => {
-  res.send("Server is working");
+  res.json({
+    message: "Server is working",
+    status: 200,
+  });
 });
 
 app.use("/uploads", express.static("uploads"));
